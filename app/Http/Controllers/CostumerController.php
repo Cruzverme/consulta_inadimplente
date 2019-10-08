@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Costumer;
+use GuzzleHttp\Client;
 
 class CostumerController extends Controller
 {
@@ -16,7 +17,15 @@ class CostumerController extends Controller
     {
         //
         $costumers = Costumer::all();
-        return view('costumers/index',compact('costumers'));
+        
+        $client = new Client();
+        $response = $client->request('GET','http://192.168.80.5/sisspc/demos/get_pendente_pagamento.php');
+        $body = $response->getBody();
+        $retorno_json = json_decode($body);
+        $sucesso = $retorno_json->success;
+        $dados = $retorno_json->dados;
+        
+        return view('costumers/index',compact('costumers','sucesso','dados'));
     }
 
     /**

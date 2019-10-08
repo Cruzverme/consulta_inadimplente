@@ -22,6 +22,7 @@
           <td>Rua</td>
           <td>Número</td>
           <td>Bairro</td>
+          <td>Coisa Teste</td>
           <td colspan="2">Action</td>
         </tr>
     </thead>
@@ -33,6 +34,7 @@
           <td>{{$costumer->street}}</td>
           <td>{{$costumer->streetNumber}}</td>
           <td>{{$costumer->neighborhood}}</td>
+          <td>{{$dados[1][0]}}</td>
 
           <td><a href="{{ route('costumers.edit',$costumer->id)}}" class="btn btn-primary">Editar</a></td>
           <td>
